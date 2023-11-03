@@ -1,13 +1,28 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="fr-FR">
+
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <main class="auth auth-login box box-pad">
+    <h1 class="box__top">Connexion</h1>
+    <form method="post" class="form3" action="/login?referrer=https%3A%2F%2Flichess.org%2F">
+      <div class="one-factor">
+        <div class="form-group"><label class="form-label" for="form3-username">Nom d'utilisateur ou
+            courriel</label><input id="form3-username" name="username" value="" class="form-control" minlength="2"
+            maxlength="320" autofocus="autofocus" required="required" autocomplete="username"></div>
+        <div class="form-group"><label class="form-label" for="form3-password">Mot de passe</label><input
+            id="form3-password" name="password" value="" type="password" class="form-control" required="required"
+            autocomplete="current-password"></div><button type="submit" class="submit button">Connexion</button><label
+          class="login-remember"><input name="remember" value="true" type="checkbox" checked="checked">Se souvenir de
+          moi</label>
+      </div>
+    </form>
+    <div class="alternative"><a href="/fr/signup?referrer=https%3A%2F%2Flichess.org%2F">S'inscrire</a><a
+        href="/password/reset">Réinitialisation du mot de passe</a></div>
+  </main>
+</body>
+
 </html>
