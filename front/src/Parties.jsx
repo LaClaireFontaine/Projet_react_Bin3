@@ -37,6 +37,7 @@ function createData(ID, Date, Heure, Joueur1, Joueur2, Gagnant) {
 
 const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  //mettre l'historique qui reste a créer 
 ];
 
 const useStyles = makeStyles({
@@ -66,10 +67,12 @@ export default function CustomizedTables() {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="right">{row.ID}</StyledTableCell>
+              <StyledTableCell align="right">{row.Date}</StyledTableCell>
+              <StyledTableCell align="right">{row.Heure}</StyledTableCell>
+              <StyledTableCell align="right">{row.Joueur1}</StyledTableCell>
+              <StyledTableCell align="right">{row.Joueur2}</StyledTableCell>
+              <StyledTableCell align="right">{row.Gagnant}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
