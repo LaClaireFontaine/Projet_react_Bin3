@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Jeu from '/Jeu';
+import Jeu from './Jeu.jsx';
 
 const JeuHist = ({ hist }) => {
     return (
