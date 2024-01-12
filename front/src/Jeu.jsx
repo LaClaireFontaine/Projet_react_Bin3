@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Connexion from '/Connexion';
+import Historique from '/Historique';
 
 const Jeu = () => {
     const [choixJ, setChoixJ] = useState(null);
