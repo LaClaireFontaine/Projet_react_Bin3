@@ -1,3 +1,4 @@
+// Connexion.jsx
 import React, { useState, useEffect } from 'react';
 import App from './App';
 import './Connexion.css';
@@ -6,8 +7,9 @@ function Connexion() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state for login status
+  const [showPopup, setShowPopup] = useState(false);
 
-  // User Login info
   const database = [
     {
       username: "user1",
@@ -40,6 +42,7 @@ function Connexion() {
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
+        setIsLoggedIn(true);
       }
     } else {
       // Username not found
@@ -47,7 +50,22 @@ function Connexion() {
     }
   };
 
-  // Generate JSX code for error message
+  useEffect(() => {
+    // Trigger the pop-up message when isSubmitted becomes true
+    if (isSubmitted) {
+      setShowPopup(true);
+
+      // Hide the pop-up message after 3 seconds
+      const timeoutId = setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+
+      // Cleanup the timeout to avoid memory leaks
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isSubmitted]);
+
+  // JSX code for error message
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
@@ -74,34 +92,27 @@ function Connexion() {
     </div>
   );
 
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    // Trigger the pop-up message when isSubmitted becomes true
-    if (isSubmitted) {
-      setShowPopup(true);
-
-      // Hide the pop-up message after 3 seconds
-      const timeoutId = setTimeout(() => {
-        setShowPopup(false);
-      }, 3000);
-
-      // Cleanup the timeout to avoid memory leaks
-      return () => clearTimeout(timeoutId);
-    }
-  }, [isSubmitted]);
-
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? (
+        {/* Conditionally render based on login status */}
+        {isLoggedIn ? (
           <>
             {showPopup && <div className="popup">Vous êtes bien connecté !</div>}
             <App />
           </>
         ) : (
-          renderForm
+          <>
+            <div className="title">Sign In</div>
+            {!isSubmitted ? (
+              renderForm
+            ) : (
+              <>
+                <div className="title">Sign In</div>
+                {renderForm}
+              </>
+            )}
+          </>
         )}
       </div>
     </div>
