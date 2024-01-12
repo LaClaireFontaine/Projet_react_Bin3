@@ -47,6 +47,23 @@ const Jeu = () => {
             )}
         </div>
     );
+
+    const [Historique, setHist] = useState([]);
+
+    // Fonction pour ajouter un jeu à l'historique
+    const addToHist = (jeuInfo) => {
+        setHist([...history, jeuInfo]);
+    };
+
+    return (
+        <div>
+        <JeuHist history={history} />
+        </div>
+    );
+
+    <div>
+      {<button onClick={() => jouer('choixJ', 'choixOrdi')}>Nouvelle partie</button>}
+    </div>
 };
 
 export default Jeu;
