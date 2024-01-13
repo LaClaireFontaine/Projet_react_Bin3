@@ -1,24 +1,20 @@
 // src/components/Auth/Logout.jsx
-import React, { useState } from 'react';
-import api from './api';
+import React from 'react';
+import { logout } from './api';
 
-const Logout = () => {
-  const [error, setError] = useState(null);
-
+const Logout = ({ onLogout }) => {
   const handleLogout = async () => {
     try {
-      await api.logout();
+      await logout();
+      onLogout(); 
     } catch (error) {
-      console.error('Logout error:', error.message);
-      setError('Logout failed. Please try again.');
+
     }
   };
 
   return (
     <div>
-      <h2>Logout</h2>
       <button onClick={handleLogout}>Logout</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };

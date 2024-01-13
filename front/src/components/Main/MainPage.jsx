@@ -2,17 +2,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MainPage = () => {
+const MainPage = ({ isAuthenticated, onLogout }) => {
   return (
     <div>
       <h2>Main Page</h2>
-      <p>Welcome to the main page!</p>
-      
-      <Link to="/game">Play Game</Link>
-      <br />
-      <Link to="/game-history">Game History</Link>
-      <br />
-      <Link to="/logout">Logout</Link>
+      {isAuthenticated ? (
+        <>
+          <Link to="/game">Play Game</Link>
+          <Link to="/game-history">Game History</Link>
+          <Link to="/logout" onClick={onLogout}>Logout</Link>
+        </>
+      ) : (
+        <>
+          <p>You need to login or register to access the game and game history.</p>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </>
+      )}
     </div>
   );
 };
